@@ -18,7 +18,7 @@ class RpiCheck(AgentCheck):
             try:
                 v = float(v[v.find("=")+1:])
             except ValueError as err:
-                raise Exception(f"Invalid clock speed: {v} ({err})")
+                continue
             out.update({k: v})
         return out
 
