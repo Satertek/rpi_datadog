@@ -7,10 +7,9 @@ class RpiCheck(AgentCheck):
     def measure_temp(self):
             temp = os.popen("vcgencmd measure_temp").readline()
             try:
-                temp = float(temp.replace("temp=","").replace("'C",""))
+                return float(temp.replace("temp=","").replace("'C",""))
             except (ValueError, TypeError) as err:
-                temp = 0.0
-            return temp
+                raise Exception(f"Invalid temperature reading: {temp} ({err})")
 
     def measure_clock(self):
         out = {}
@@ -19,7 +18,7 @@ class RpiCheck(AgentCheck):
             try:
                 v = float(v[v.find("=")+1:])
             except ValueError as err:
-                v = 0.0
+                raise Exception(f"Invalid clock speed: {v} ({err})")
             out.update({k: v})
         return out
 
