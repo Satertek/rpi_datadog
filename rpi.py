@@ -27,7 +27,7 @@ class RpiCheck(AgentCheck):
         err_list = []
 
         try:
-            self.gauge(f"rpi.temp.", float(self.measure_temp()), tags=["cpu", "temperature"])
+            self.gauge(f"rpi.temperature.soc", float(self.measure_temp()), tags=["cpu", "temperature"])
         except Exception as err:
             err_list.append(f"measure_temp:{err}")
 
