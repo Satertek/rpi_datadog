@@ -3,6 +3,7 @@ Raspberry Pi Custom Metrics for Datadog
 
 Example Docker run:
 
+<pre><code>
 DOCKER_CONTENT_TRUST=1 docker run -d --name datadog \
         -v /var/run/docker.sock:/var/run/docker.sock:ro \
         -v /proc/:/host/proc/:ro \
@@ -17,3 +18,4 @@ DOCKER_CONTENT_TRUST=1 docker run -d --name datadog \
         -e DD_API_KEY=[API KEY]
         -e DD_SITE="datadoghq.com" \
         datadog/agent:latest
+</code></pre>
